@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import NavBar from '@/components/navbar.vue'
-import AppLeft from '@/components/appLeft.vue'
-import AppContent from '@/components/appContent.vue'
-import AppRight from '@/components/appRight.vue'
-
+import AppHeader from "@/components/appHeader.vue";
+import AppContent from "@/components/appContent.vue";
 </script>
 
 <template>
-    <div class="layout">
-    <Navabr/>
-    <AppLeft/>
+  <div class="layout">
+    <AppHeader />
     <AppContent />
-    <AppRight />
-    </div>
+  </div>
 </template>
-<style>
-</style>
-
-
-
+<style></style>

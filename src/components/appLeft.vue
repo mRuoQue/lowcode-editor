@@ -1,9 +1,13 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-<div>appleft</div>
+  <div class="app-left">
+    app-left
+  </div>
 </template>
 <style>
+    .app-left {
+        width: 200px;
+        height: 100%;
+    }
 </style>
