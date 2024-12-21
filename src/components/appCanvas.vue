@@ -10,7 +10,7 @@ import { RouterView } from "vue-router";
 <style>
 .app-canvas {
   flex: 1;
-  background-color: rgb(248, 248, 248);
   height: 100%;
+  background-color: var(--color-gray-100);
 }
 </style>

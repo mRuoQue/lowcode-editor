@@ -9,7 +9,11 @@ import { RouterView } from "vue-router";
 </template>
 <style>
 .app-content{
-  /* margin-top: 10px; */
-  height: calc(100vh - 88px);
+  height: calc(100vh - 128px);
+  margin: 20px;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: var(--color-lightBlue-100);
+  border-radius: var(--border-radius-middle);
 }
 </style>

@@ -16,8 +16,8 @@ import AppCanvas from "@/components/appCanvas.vue";
   display: flex;
   justify-content: space-between;
   height: 100%;
-  border-top: 1px solid #e6e6e6;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-middle);
 }
 </style>
