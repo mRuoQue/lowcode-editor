@@ -1,32 +1,54 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps, ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+defineProps({
+  tabs: Array<{ name: string; route: string }>,
+});
+
+const active = ref<boolean>(true);
+const current = ref<number>(1);
+const handleTo = ($event: Event, index: number, route: string) => {
+  $event.preventDefault();
+  if (current.value === index) {
+    return;
+  }
+  current.value = index;
+  router.push(route);
+};
+</script>
 
 <template>
   <div class="radio-inputs">
-    <label class="radio">
-      <input type="radio" name="radio" checked="" />
-      <span class="name">数据源</span>
-    </label>
-    <label class="radio">
-      <input type="radio" name="radio" />
-      <span class="name">画布</span>
-    </label>
-    <label class="radio">
-      <input type="radio" name="radio" />
-      <span class="name">动作</span>
+    <label
+      class="radio"
+      v-for="(tab, index) in tabs"
+      @click="($event) => handleTo($event, index, tab.route)"
+    >
+      <input
+        type="radio"
+        name="radio"
+        :checked="index === current ? active : false"
+      />
+      <span class="name">{{ tab.name }}</span>
     </label>
   </div>
 </template>
-<style>
+<style scoped>
+.router-link-active,
+a {
+  text-decoration: none;
+}
 .radio-inputs {
   position: relative;
+  width: 300px;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   border-radius: 0.5rem;
   background-color: #eee;
   box-sizing: border-box;
   box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
   padding: 0.25rem;
-  width: 300px;
   font-size: 14px;
 }
 

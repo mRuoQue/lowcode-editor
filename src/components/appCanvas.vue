@@ -1,7 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+</script>
 
 <template>
-  <div class="app-canvas">app-canvas</div>
+  <div class="app-canvas">
+    app-canvas
+  </div>
 </template>
 <style>
 .app-canvas {
