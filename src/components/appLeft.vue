@@ -2,12 +2,12 @@
 import useComponentBlocks from "@/hoks/useComponentBlock.ts";
 
 const { componentBlocks, materialComponents } = useComponentBlocks();
-console.log(materialComponents);
+
 </script>
 <template>
   <div class="app-left">
     <el-tabs tab-position="left">
-      <el-tab-pane label="组件"
+      <el-tab-pane label="组件" 
         ><div class="app-left-components">
           <div
             class="app-left-item"

@@ -1,20 +1,6 @@
 <script setup lang="ts">
 // import useOperate from "@/hoks/useOperate";
 
-const operatorTabs = [
-  {
-    label: "属性",
-    key: "attr",
-  },
-  {
-    label: "动画",
-    key: "animation",
-  },
-  {
-    label: "事件",
-    key: "event",
-  },
-];
 </script>
 
 <template>

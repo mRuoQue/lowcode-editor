@@ -1,0 +1,57 @@
+{
+  "appContainer": {
+    "width": "",
+    "height": ""
+  },
+  "blocks": [
+    {
+      "type": "button",
+      "top": 50,
+      "left": 250,
+      "width": 200,
+      "height": 200
+    },
+    {
+      "type": "text",
+      "top": 50,
+      "left": 50,
+      "width": 200,
+      "height": 200
+    },
+    {
+      "type": "input",
+      "top": 50,
+      "left": 450,
+      "width": 200,
+      "height": 200
+    },
+    {
+      "type": "slider",
+      "top": 50,
+      "left": 450,
+      "width": 200,
+      "height": 200
+    },
+    {
+      "type": "collapse",
+      "top": 50,
+      "left": 450,
+      "width": 200,
+      "height": 200
+    },
+    {
+      "type": "rate",
+      "top": 50,
+      "left": 450,
+      "width": 200,
+      "height": 200
+    },
+    {
+      "type": "switch",
+      "top": 50,
+      "left": 450,
+      "width": 200,
+      "height": 200
+    }
+  ]
+}

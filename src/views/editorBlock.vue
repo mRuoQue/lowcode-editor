@@ -2,6 +2,7 @@
 import AppLeft from "@/components/appLeft.vue";
 import AppRight from "@/components/appRight.vue";
 import AppCanvas from "@/components/appCanvas.vue";
+
 </script>
 
 <template>

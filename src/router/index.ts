@@ -1,22 +1,17 @@
-import {
-  createWebHashHistory,
-  createMemoryHistory,
-  createRouter,
-} from "vue-router";
-import Editorblock from "@/views/editorBlock.vue";
-import layout from "@/views/layout.vue";
+import { createWebHashHistory, createRouter } from "vue-router";
+import EditorBlock from "@/views/editorBlock.vue";
 import DataSource from "@/views/dataSource.vue";
 import Others from "@/views/others.vue";
 
 const routes = [
   {
     path: "/",
-    component: layout,
+    component: EditorBlock,
     children: [],
   },
   {
-    path: "/editorblock",
-    component: Editorblock,
+    path: "/editorBlock",
+    component: EditorBlock,
     children: [],
   },
   {
