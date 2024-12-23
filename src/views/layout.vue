@@ -4,7 +4,6 @@ import AppContent from "@/components/appContent.vue";
 import { mappingConfig } from "@/config/componentMapping.tsx";
 import { provide } from "vue";
 
-console.log('mappingConfig',mappingConfig)
 provide("mappingConfig", mappingConfig);
 </script>
 

@@ -1,20 +1,26 @@
 <script setup lang="ts">
-import useComponentBlocks from "@/hoks/useComponentBlock.ts";
+import {inject} from "vue";
+import { useDrag } from "@/hooks/useDrag.ts";
+const { handleDragStart, handleDragEnd } = useDrag();
 
-const { componentBlocks, materialComponents } = useComponentBlocks();
-
+const mappingConfig = inject("mappingConfig");
 </script>
 <template>
   <div class="app-left">
     <el-tabs tab-position="left">
-      <el-tab-pane label="组件" 
+      <el-tab-pane label="组件"
         ><div class="app-left-components">
           <div
             class="app-left-item"
-            v-for="component in materialComponents"
+            v-for="component in mappingConfig.materialComponents"
             :key="component.type"
           >
-            <div class="app-left-item-icon">
+            <div
+              class="app-left-item-icon"
+              draggable="true"
+              @dragstart="($event:DragEvent) => handleDragStart($event, component)"
+              @dragend="($event:DragEvent) => handleDragEnd($event, component)"
+            >
               <component :is="component.icon"></component>
             </div>
 
@@ -56,10 +62,10 @@ const { componentBlocks, materialComponents } = useComponentBlocks();
   padding: 10px 0;
   border-radius: 8px;
 }
-.app-left-item:hover{
+.app-left-item:hover {
   background-color: var(--color-gray-300);
 }
-.app-left-item-icon{
+.app-left-item-icon {
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -70,7 +76,7 @@ const { componentBlocks, materialComponents } = useComponentBlocks();
   justify-content: center;
   align-items: center;
 }
-.app-left-item-label{
+.app-left-item-label {
   font-size: var(--font-size-small);
   font-weight: var(--font-weight-bold);
   margin-top: 5px;

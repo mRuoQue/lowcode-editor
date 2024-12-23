@@ -5,6 +5,7 @@ import {
   ElButton,
   ElInput,
   ElCollapse ,
+  ElCollapseItem,
   ElRate,
   ElSlider,
   ElSwitch,
@@ -70,7 +71,7 @@ registry({
   props: {
     type: "success",
     text: "按钮",
-    size: "small",
+    size: "large",
   },
 });
 
@@ -100,11 +101,14 @@ registry({
 });
 registry({
   type: "collapse",
-  label: "拾色器",
+  label: "折叠面板",
   icon: HamburgerButton,
-  render: () => <ElCollapse></ElCollapse>,
+  render: (props) => <ElCollapse><ElCollapseItem title={props.title}>{props.text}</ElCollapseItem></ElCollapse>,
   event: () => {},
-  props: {},
+  props: {
+    title:"Consistency",
+    text:"Consistent with real life: in line with the process and logic of reallife, and comply with languages and habits that the users are used to;"
+  },
 });
 registry({
   type: "rate",
