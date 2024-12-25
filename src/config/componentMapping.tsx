@@ -91,12 +91,13 @@ registry({
   type: "input",
   label: "输入框",
   icon: Form,
-  render: (props) => <ElInput placeholder={props.text}></ElInput>,
+  render: (props) => <ElInput placeholder={props.text} modelValue={props.modelValue}></ElInput>,
   event: () => {},
   props: {
-    text: "输入框",
+    placeholder: "输入框",
     type: "input",
     size: "small",
+    modelValue:''
   },
 });
 registry({
