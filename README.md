@@ -99,7 +99,7 @@ function (){
 ● 保存
 ● 发布
 ● ...
-六、导出的json schema
+六、导出的json schema，跨平台
 {
   "name":"lowcode",
   "version":"0.0.0",
