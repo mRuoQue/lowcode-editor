@@ -1,17 +1,13 @@
-
 import { useBlockDataStore } from "@/stores/useBlockDataStore";
-import { useBlockRefStore } from "@/stores/useBlockRefStore";
 export const useDrag = () => {
-
-  const blockRefStore = useBlockRefStore();
   const blockDataStore = useBlockDataStore();
 
-  let blockData = blockDataStore.state;
-  let dragCompoent = null;  // 当前拖拽的元素
+  let blockData = blockDataStore.blockData;
+  let dragCompoent = null; // 当前拖拽的元素
   // 拿到物料区的映射的component，退拽结束后添加到画布区
   const dragStart = (e: DragEvent, component) => {
     dragCompoent = component;
-    const canvasRef = blockRefStore.state;
+    const canvasRef = blockDataStore.blockContainerRef;
 
     // 拖动画布区事件
     canvasRef.value.addEventListener("dragenter", dragenter);
@@ -21,7 +17,7 @@ export const useDrag = () => {
   };
 
   const dragEnd = (e: DragEvent) => {
-    const canvasRef = blockRefStore.state;
+    const canvasRef = blockDataStore.blockContainerRef;
     canvasRef.value.removeEventListener("dragenter", dragenter);
     canvasRef.value.removeEventListener("dragover", dragover);
     canvasRef.value.removeEventListener("dragleave", dragleave);
@@ -38,11 +34,19 @@ export const useDrag = () => {
     e.dataTransfer.dropEffect = "none";
   };
 
+  // 拖拽结束
   const generaterenderData = (e) => {
+    const dragCompoentStyle = {
+      left: e.offsetX,
+      top: e.offsetY, // 松手时基于画布的坐标
+      zIndex: 1,
+    };
+    // 跟新元素style
+    blockDataStore.updateDragComponentStyle(dragCompoentStyle);
     // 当前新拖拽的组件
     const block = {
       type: dragCompoent.type,
-      // 定义属性
+      style:blockDataStore.blockStyle
     };
 
     blockData = { ...blockData, blocks: [...blockData.blocks, block] };
