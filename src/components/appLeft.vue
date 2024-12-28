@@ -1,9 +1,40 @@
 <script setup lang="ts">
-import {inject} from "vue";
+import { inject, nextTick, onMounted, ref } from "vue";
 import { useDrag } from "@/hooks/useDrag.ts";
-const { handleDragStart, handleDragEnd } = useDrag();
+import { useBlockDataStore } from "@/stores/useBlockDataStore.ts";
+import { cloneDeep } from "lodash";
+import appConfig from "@/config/appConfig";
 
+const blockData = ref<any>(appConfig); // 全局配置数据
+
+const { handleDragStart, handleDragEnd } = useDrag();
 const mappingConfig = inject("mappingConfig");
+const blockDataStore = useBlockDataStore();
+
+const itemRef = ref();
+
+const initData = () => {
+  const originData = cloneDeep(mappingConfig.materialComponents);
+
+  originData.forEach((data, index) => {
+    data.props = {
+      ...data.props,
+      width: itemRef.value[index].clientWidth,
+      height: itemRef.value[index].clientHeight,
+    };
+  });
+
+  const data = {
+    ...blockDataStore.blockData,
+    blocks: originData,
+  };
+  blockDataStore.originBlockData = data;
+};
+
+onMounted(() => {
+  nextTick(initData);
+  // initData();
+});
 </script>
 <template>
   <div class="app-left">
@@ -23,8 +54,16 @@ const mappingConfig = inject("mappingConfig");
             >
               <component :is="component.icon"></component>
             </div>
-
             <span class="app-left-item-label">{{ component.label }}</span>
+          </div>
+        </div>
+        <div class="app-load-data">
+          <div
+            class="app-load-data-item"
+            v-for="component in mappingConfig.materialComponents"
+            ref="itemRef"
+          >
+            <component :is="component.render(component.props)"></component>
           </div>
         </div>
       </el-tab-pane>
@@ -33,6 +72,13 @@ const mappingConfig = inject("mappingConfig");
   </div>
 </template>
 <style>
+.app-load-data {
+  position: relative;
+  opacity: 0;
+}
+.app-load-data-item {
+  position: absolute;
+}
 .app-left {
   width: 300px;
   height: 100%;

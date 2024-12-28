@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, onMounted, watchEffect, computed } from "vue";
+import { inject, ref, onMounted, onUpdated, watchEffect, computed, nextTick } from "vue";
 import { useBlockDataStore } from "@/stores/useBlockDataStore.ts";
 const blockDataStore = useBlockDataStore();
 
@@ -7,10 +7,8 @@ const mappingConfig = inject("mappingConfig");
 const renderComponents = mappingConfig.renderComponents;
 
 const canvasRef = ref(null);
+const canvasItemRef = ref();
 
-watchEffect(() => {
-  console.log(blockDataStore.blockStyle)
-});
 onMounted(() => {
   blockDataStore.setBlockContainerRef(canvasRef);
 });
@@ -23,14 +21,9 @@ onMounted(() => {
       v-for="block in blockDataStore.blockData.blocks"
       :style="block.style"
       :key="block.type"
+      ref="canvasItemRef"
     >
-      <component
-        :is="
-          renderComponents[block.type]?.render(
-            renderComponents[block.type].props
-          )
-        "
-      ></component>
+      <component :is="renderComponents[block.type]?.render(block.props)"></component>
     </div>
   </div>
 </template>

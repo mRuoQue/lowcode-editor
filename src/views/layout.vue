@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import AppHeader from "@/components/appHeader.vue";
 import AppContent from "@/components/appContent.vue";
-import { mappingConfig } from "@/config/componentMapping.tsx";
-import { provide } from "vue";
 
-provide("mappingConfig", mappingConfig);
 </script>
 
 <template>

@@ -29,7 +29,7 @@ interface BasicProps {
   type: any;
   [key: string]: any;
 }
-interface ComponentItem {
+interface IComponent {
   type: string;
   label: string;
   icon: Icon;
@@ -39,9 +39,9 @@ interface ComponentItem {
 }
 const createMapping = () => {
   const materialComponents: any[] = []; // 物料区组件
-  const renderComponents: Record<string, ComponentItem> = {}; // 画布区组件
+  const renderComponents: Record<string, IComponent> = {}; // 画布区组件
 
-  const registry = (component: ComponentItem) => {
+  const registry = (component: IComponent) => {
     materialComponents.push(component);
     renderComponents[component.type] = component;
   };
@@ -71,7 +71,7 @@ registry({
   props: {
     type: "success",
     text: "按钮",
-    size: "large",
+    size: "small",
   },
 });
 
